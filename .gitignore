@@ -1,1 +1,8 @@
+# virtual 
 venv
+
+#  python
+__pycache__
+
+# db
+db.sqlite3
