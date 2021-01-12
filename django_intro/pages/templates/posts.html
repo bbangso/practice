@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{ num }}번 글 입니다!</h1>
+    <P>{{ content }}</P>
+    <P>{{ content|length }} 글자</P>
+    <P>{{ content|truncatechars:11 }}</P>
+    <hr/>
+    <h2>댓글</h2>
+    <ul>
+    {% for reply in replies %}
+        <li>{{ reply }}</li>
+    {% endfor %}
+    </ul>
+
+    <ul>
+    {% for reply in replies %}
+        <li>댓글 {{ forloop.counter }}: {{ reply }}</li>
+    {% endfor %}
+    </ul>
+
+    <ul>
+        {% for reply in no_replies %}
+            <li>댓글 {{ forloop.counter }}: {{ reply }}</li>
+            {% empty %} <!--배열 no_replies가 비어있을 때..-->
+            <p>댓글이 없어요 ㅠㅜㅠ</p>
+        {% endfor %}
+    </ul>
+    {% if user == 'admin' %}
+        <p>수정, 삭제</p>
+    {% else %}
+        <p>관리자 권한이 없습니다.</p>
+    {% endif %}
+</body>
+</html>
