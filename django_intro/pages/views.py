@@ -15,3 +15,6 @@ def lotto(request):
         'pick': pick,
     }
     return render(request, 'lotto.html', context)
+
+def iam(request):
+    return render(request, 'iam.html')
