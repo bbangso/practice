@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block css %}
+<style>
+    h1{
+        color:red;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
     <h1>{{ num }}번 글 입니다!</h1>
     <P>{{ content }}</P>
     <P>{{ content|length }} 글자</P>
@@ -36,5 +39,4 @@
     {% else %}
         <p>관리자 권한이 없습니다.</p>
     {% endif %}
-</body>
-</html>
+{% endblock %}
