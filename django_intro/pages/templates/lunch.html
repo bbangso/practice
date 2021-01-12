@@ -8,5 +8,9 @@
 <body>
     <h1>점심 메뉴 추천</h1>
     <h2>{{ menu }}</h2>
+    <hr/>
+    {% for menu in menupan %}
+    <li>{{ menu }}</li>
+    {% endfor %}
 </body>
 </html>

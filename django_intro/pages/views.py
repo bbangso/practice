@@ -23,6 +23,7 @@ def lunch(request):
     menupan = ['햄버거', '더콰트로', '피자', '초밥', '한우', '삼겹살']
     menu = random.choice(menupan)
     context = {
-        'menu': menu
+        'menu': menu,
+        'menupan': menupan
     }
     return render(request, 'lunch.html', context)
