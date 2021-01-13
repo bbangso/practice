@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'stylesheets/form.css' %}">
+{% endblock %}
+
 {% block body %}
     <h2>글쓰기</h2>
     <form action="/articles/create/">

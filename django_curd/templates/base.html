@@ -6,9 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'stylesheets/style.css' %}">
+
+    {% block css %}
+    {% endblock %}
 </head>
 <body>
     <h1>게시판 만들기 수업</h1>
+    <!-- bonobono image -->
+    <img src="{% static 'images/bono.JPG' %}">
+
     {% block body %}
     {% endblock %}
     <a href="/articles/">게시글 목록 보기</a>

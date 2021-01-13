@@ -1,0 +1,8 @@
+h2 {
+    color: blue;
+}
+
+
+label, input {
+    display: block;
+}
