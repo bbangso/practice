@@ -19,3 +19,10 @@ def create(request):
     article.content = request.GET.get('content')
     article.save()
     return redirect('/articles/')
+
+def detail(request, article_pk):
+    article = Article.objects.get(id=article_pk)
+    context = {
+        'article' : article,
+    }
+    return render(request, 'articles/detail.html', context)
