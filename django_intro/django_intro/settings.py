@@ -62,7 +62,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'django_intro', 'templates')
         ],
-        'APP_DIRS': True,
+        'APP_DIRS': True, # 등록된 app의 templates폴더를 
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
