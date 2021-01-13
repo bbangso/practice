@@ -11,3 +11,11 @@ def index(request):
 
 def new(request):
     return render(request, 'articles/new.html')
+
+def create(request):
+
+    article = Article()
+    article.title = request.GET.get('title')
+    article.content = request.GET.get('content')
+    article.save()
+    return render(request, 'articles/create.html')
