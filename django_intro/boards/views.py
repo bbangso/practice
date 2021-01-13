@@ -20,3 +20,16 @@ def complete(request):
         'content' : content
     }
     return render(request, 'boards/complete.html', context)
+
+
+def ping(request):
+    return render(request,'boards/ping.html')
+
+
+def pong(request):
+    message = request.GET.get('message')
+    print(message)
+    context = {
+        'message' : message,
+    }
+    return render(request, 'boards/pong.html', context)
