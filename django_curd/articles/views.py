@@ -18,7 +18,7 @@ def create(request):
     article.title = request.GET.get('title')
     article.content = request.GET.get('content')
     article.save()
-    return redirect('/articles/')
+    return redirect(f'/articles/{article.pk}')
 
 def detail(request, article_pk):
     article = Article.objects.get(id=article_pk)
