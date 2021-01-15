@@ -32,3 +32,17 @@ def delete(request, article_pk):
     article.delete()
     # return render(request, 'articles/delete.html')
     return redirect('/articles/')
+
+def edit(request, pk):
+    article = Article.objects.get(pk=pk)
+    context = {
+        'article' : article,
+    }
+    return render(request, 'articles/edit.html', context)
+
+def update(request, pk):
+    article = Article.objects.get(pk=pk)
+    article.title = request.GET.get('title')
+    article.content = request.GET.get('content')
+    article.save()
+    return redirect(f'/articles/{article.pk}')
