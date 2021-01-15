@@ -42,7 +42,7 @@ def edit(request, pk):
 
 def update(request, pk):
     article = Article.objects.get(pk=pk)
-    article.title = request.GET.get('title')
-    article.content = request.GET.get('content')
+    article.title = request.POST.get('title')
+    article.content = request.POST.get('content')
     article.save()
     return redirect(f'/articles/{article.pk}')
