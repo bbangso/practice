@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Article
 
 # Create your views here.
@@ -21,7 +21,11 @@ def create(request):
     return redirect('articles:detail', article.pk)
 
 def detail(request, article_pk):
-    article = Article.objects.get(id=article_pk)
+    # article = Article.objects.get(id=article_pk)
+    article = get_object_or_404(Article, pk=article_pk)
+    # 100번째 글이 없는데 요청한경우 500번대 오류를반환하기보다는 404 오류를
+    # 반환하는것이 적합하므로 이 매서드를 쓴다
+
     context = {
         'article' : article,
     }
