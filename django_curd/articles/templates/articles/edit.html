@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<form action="/articles/{{ article.pk }}/update/" method="POST">
+<form action="{% url 'articles:update' article.pk %}" method="POST">
     {% csrf_token %}
     <label for="title">제목 : </label>
     <input type="text" name="title" value="{{article.title}}" id="title" autofocus required> <br>
