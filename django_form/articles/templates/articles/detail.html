@@ -7,10 +7,10 @@
     <p>생성 : {{ article.created_at }}</p>
     <p>수정 : {{ article.updated_at }}</p>
     <hr>
-    <form action="{% url 'articles:delete' article.pk %}" method="POST">
+    <form class="d-inline" action="{% url 'articles:delete' article.pk %}" method="POST">
         {% csrf_token %}
-        <input type="submit" value="삭제">
+        <button class="btn btn-primary">삭제</button>
     </form>
 
-    <button><a href="{% url 'articles:update' article.pk %}">수정</a></button>
+    <a href="{% url 'articles:update' article.pk %}"><button class="btn btn-primary">수정</button></a>
 {% endblock %}
