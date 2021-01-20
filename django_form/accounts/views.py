@@ -34,8 +34,14 @@ def detail(request, pk):
 
     return render(request, 'accounts/detail.html', context)
 
-def update(request, pk):
-    form = CustomUserChangeForm()
+def update(request):
+    if reqeust.method=='POST':
+        form = CustomUserChangeFor(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:index')
+    else:
+        form = CustomUserChangeForm(instance=request.user)
     context = {
         'form': form,
     } 
