@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 #from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model, login
+from django.contrib.auth import get_user_model, login, logout
 
 from .forms import CustomUserChangeForm
 
@@ -51,3 +51,7 @@ def signin(request):
         'form': form
     }
     return render(request, 'accounts/signin.html', context)
+
+def signout(request):
+    logout(request)
+    return redirect('articles:index')
