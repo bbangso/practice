@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 #from django.contrib.auth.models import User
+from django.views.decorators.http import require_POST
 from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserChangeForm
@@ -62,4 +63,10 @@ def signin(request):
 @login_required
 def signout(request):
     logout(request)
+    return redirect('articles:index')
+
+@require_POST
+@login_required
+def delete(request):
+    request.user.delete()
     return redirect('articles:index')
