@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404 
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 #from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login
 
 from .forms import CustomUserChangeForm
 
@@ -36,3 +36,18 @@ def update(request, pk):
     } 
 
     return render(request, 'accounts/update.html', context)
+
+def signin(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+
+        if form.is_valid():
+            login(request, form.get_user())
+            return redirect('articles:index')
+
+
+    form = AuthenticationForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'accounts/signin.html', context)
