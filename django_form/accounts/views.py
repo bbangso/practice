@@ -76,3 +76,6 @@ def signout(request):
 def delete(request):
     request.user.delete()
     return redirect('articles:index')
+
+
+
