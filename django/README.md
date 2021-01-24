@@ -135,7 +135,7 @@ Django는 `render` method 사용시 두 번째 인자로 들어가는 `hello/hi.
 
 
 
-이 때 고려해야 할 것이 한가지 있다. 여러 app이 있을 경우 django는 각 app의 templates 폴더 안에 있는 html 파일이 어떤 app이 사용하는 html파일인지 모른다. 예를들어 hello app의 hi.html 파일과 bye app의 hi.html 파일이 있고 `render` 매서드의 두번째 인자로 `hi.html`을 넘겨주게 되면 django는 이 파일이 hello app에 작성된 코드인지 bye app에 작성된 코드인지 모른다. 
+이 때 고려해야 할 것이 한가지 있다. 여러 app이 있을 경우 django는 각 app의 templates 폴더 안에 있는 html 파일이 어떤 app이 사용하는 html파일인지 모른다. 예를들어 hello app의 hi.html 파일과 bye app의 hi.html 파일이 있고 `render` 매서드의 두번째 인자로 `hi.html`을 넘겨주게 되면 django는 이 파일이 hello app에 작성된 코드인지 bye app에 작성된 코드인지 모른다. (setting.py 에 등록된 app순서대로 templates를 탐색하므로 먼저 등록된 app의 html 파일이 반환된다.)
 
 
 
@@ -143,13 +143,78 @@ Django는 `render` method 사용시 두 번째 인자로 들어가는 `hello/hi.
 
 
 
-고려해야할 것이 한가지 더 있다. 
+고려해야할 것이 한가지 더 있다. Django를 사용하면서 여러 html 코드를 작성하게 될텐데 각 html 코드마다 중복되는 코드를 넣어야 할 일이 있다. 이럴 경우 코드 수정을 할 때 각 html 파일을 모두 수정해야하는 수고로움이 있다. 이러한 일을 좀 더 간편하게 하기 위해 Django는 `Template inheritance` 라는 강력한 기능을 제공하는데 이를 사용해서 `hi.html` 을 작성해 보자.
+
+
+
+Root 디렉토리에 templates 폴더를 생성하고 그 안에 `base.html` 파일을 생성하고 다음과 같이 작성한다.
+
+```html
+<!--templates/base.html-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello</title>
+</head>
+<body>
+    <h1>Template inheritance</h1>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>
+```
+
+
+
+
+
+Django는 일반적으로 app 내에 있는 templates 폴더가 아닌 외부의 templates 폴더는 탐색하지 않는다. 따라서 `setting.py` 에 해당 경로를 등록해야한다.
 
 ```python
-# hello/templates/hello 폴더 생성
-# hello/templates/hello/hi.html 파일 생성
-# hello/templates/hello/hi.html
+# 프로젝트/settings.py
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        
+        # app내에 있는 폴더가 아닌 추가적으로 사용하고 싶은 폴더를 설정한다.
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')  # <-- 다음과 같이 추가
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 ```
+
+
+
+
+
+이제 `hi.html` 코드를 작성한다.
+
+```html
+<!-- 
+hello/templates/hello 폴더 생성
+hello/templates/hello/hi.html 파일 생성
+hello/templates/hello/hi.html
+-->
+{% extends 'base.html' %}
+    
+{% block body %}
+<p>hello world!</p>
+{% endblock %}
+```
+
+서버를 실행시키고 `프로젝트 url/hello` 에 요청을 보내면 `hello world!` 가 출력되는 것을 볼 수 있다.
 
 
 
