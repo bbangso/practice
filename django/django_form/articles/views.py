@@ -18,8 +18,10 @@ def create(request):
         # POST /articles/new/
         form = ArticleForm(request.POST)
         if form.is_valid():
-            article = form.save()
-            return redirect('articles:index')
+            article = form.save(commit=False) # form의 객체를 가져오되 저장하지 않는다
+            article.user = request.user
+            article.save()
+            return redirect('articles:detail', article.pk)
         
     else:
         # GET /articles/new/
@@ -49,7 +51,9 @@ def update(request, pk):
         form = ArticleForm(request.POST, instance=article)
 
         if form.is_valid():
-            article = form.save()
+            article = form.save(commit=False)
+            article.user = request.user
+            article.save()
             return redirect('articles:detail', article.pk)
     else:
         form = ArticleForm(instance=article)

@@ -3,6 +3,7 @@
 {% block body %}
     <h1>{{ article.pk }}번 글</h1>
     <h2>{{ article.title }}</h2>
+    <h3>글쓴이 : {{article.user.username}}</h3>
     <p>{{ article.content }}</p>
     <p>생성 : {{ article.created_at }}</p>
     <p>수정 : {{ article.updated_at }}</p>
