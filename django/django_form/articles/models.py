@@ -10,3 +10,9 @@ class Article(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL ,on_delete=models.CASCADE)
 
     # settings.AUTH_USER_MODEL
+
+
+class Comment(models.Model):
+    content = models.TextField()
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
