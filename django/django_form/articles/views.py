@@ -69,6 +69,8 @@ def update(request, pk):
         return render(request, 'articles/form.html', context)
     return redirect('articles:index')
 
+@require_POST
+@login_required
 def comments_create(request, pk):
     article = get_object_or_404(Article, pk=pk)
     form = CommentForm(request.POST)

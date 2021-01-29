@@ -21,7 +21,7 @@
     <hr>
     <h3>댓글</h3>
     {% for comment in article.comment_set.all %}
-        <li>{{ comment.content }}</li>
+        <li>{{ comment.user.username }} : {{ comment.content }}</li>
     {% endfor %}
 
     <form action="{% url 'articles:comments_create' article.pk %}" method="POST">
