@@ -1,5 +1,5 @@
 from django import forms
-from .models import Article
+from .models import Article, Comment
 
 class ArticleForm(forms.ModelForm):
     title = forms.CharField(
@@ -33,3 +33,8 @@ class ArticleForm(forms.ModelForm):
 # class ArticleForm(forms.Form):
 #     title = forms.CharField(max_length=20)
 #     content = forms.CharField(widget=forms.Textarea)
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
