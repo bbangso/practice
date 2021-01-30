@@ -3,6 +3,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from .models import Article
 from .forms import ArticleForm, CommentForm
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -68,8 +69,10 @@ def update(request, pk):
         }
         return render(request, 'articles/form.html', context)
     
-    from django.contrib import messages
     messages.warning(request, '본인글만 수정가능')
+    # 403 메시지
+    # from django.http import HttpResponseForbidden
+    # return HttpResponseForbidden
     return redirect('articles:index')
 
 @require_POST
