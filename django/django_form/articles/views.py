@@ -85,4 +85,5 @@ def comments_create(request, pk):
         comment.user = article.user
         comment.article = article
         comment.save()
+        
         return redirect('articles:detail', article.pk)
