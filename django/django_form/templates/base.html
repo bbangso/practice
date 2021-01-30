@@ -15,6 +15,13 @@
     <a href="{% url 'accounts:signin' %}">로그인</a>
     <a href="{% url 'accounts:signup' %}">회원가입</a>
     {% endif %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+            {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
     <div class="container">
         {% block body %}
         {% endblock %}

@@ -67,6 +67,10 @@ def update(request, pk):
             'form': form,
         }
         return render(request, 'articles/form.html', context)
+    
+    from django.contrib import messages
+    print('잘못된 접근')
+    messages.warning(request, '본인글만 수정가능')
     return redirect('articles:index')
 
 @require_POST
