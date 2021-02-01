@@ -9,6 +9,3 @@ class User(models.Model):
     phone = models.CharField(max_length=15)
     balance = models.IntegerField()
 
-class Comment(models.Model):
-    content = models.TextField()
-    user = models.ForeignKey(User, ondelete = models.CASCADE))
