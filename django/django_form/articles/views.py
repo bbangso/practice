@@ -17,7 +17,7 @@ def index(request):
 def create(request):
     if request.method == 'POST':
         # POST /articles/new/
-        form = ArticleForm(request.POST)
+        form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
             article = form.save(commit=False) # form의 객체를 가져오되 저장하지 않는다
             article.user = request.user

@@ -128,3 +128,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+# 미디어 파일을 저장하기 위한 루트 경로
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
