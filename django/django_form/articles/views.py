@@ -87,3 +87,13 @@ def comments_create(request, pk):
         comment.save()
         
         return redirect('articles:detail', article.pk)
+
+
+def like(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+
+    if article.like_users.filter(id=request.user.pk).exists():
+        article.like_users.remove(request.user)
+    else:
+        article.like_users.add(request.user)
+    return redirect('articles:detail', article.pk)

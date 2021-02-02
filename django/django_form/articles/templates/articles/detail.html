@@ -15,6 +15,16 @@
     </div>
     {% endif %}
 
+    {% if request.user in article.like_users.all %}
+    <a href="{% url 'articles:like' article.pk %}">
+        <i class="fas fa-heart fa-lg" style="color:red;"></i>
+    </a>
+    {% else %}
+    <a href="{% url 'articles:like' article.pk %}">
+        <i class="far fa-heart fa-lg"></i>
+    </a>
+    {% endif %}
+    <p>{{ article.like_users.count }}</p>
     <hr>
     <p>{{ article.content }}</p>
     <img src="{{ article.image.url }}">
