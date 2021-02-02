@@ -10,6 +10,11 @@
         </li>
           {% if request.user.is_authenticated %}
               <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:detail' request.user.id%}">
+                  <span class="navbar-text">{{ request.user.username }}</span>
+                </a>
+              </li>
+              <li class="nav-item">
                   <span class="navbar-text">{{ request.user.username }}, 님 환영합니다.
               </li>
               <li class="nav-item">
