@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Authenti
 from django.views.decorators.http import require_POST
 from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserChangeForm
+from .forms import CustomUserChangeForm, CustomUserCreationForm
 
 # Create your views here.
 def signup(request):
@@ -13,12 +13,12 @@ def signup(request):
         return redirect('articles:index')
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('articles:index')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     context = {
         'form': form
     }
