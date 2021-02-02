@@ -6,11 +6,11 @@ class Doctor(models.Model):
 
 class Patient(models.Model):
     name = models.CharField(max_length=10)
-    doctors = models.ManyToManyField(Doctor,
-                                through='Redervation',
-                                related_name='patients')
+    doctors = models.ManyToManyField(
+        Doctor,
+        related_name='patients',
+    )
 
-
-class Redervation(models.Model):
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+# class Reservation(models.Model):
+#     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+#     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
