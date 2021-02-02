@@ -15,7 +15,8 @@
     </div>
     {% endif %}
 
-    {% if request.user in article.like_users.all %}
+    {% with article_like_users=article.like_users.all %} <!--중복 연산을 막기 위함 -->
+    {% if request.user in article_like_users %}
     <a href="{% url 'articles:like' article.pk %}">
         <i class="fas fa-heart fa-lg" style="color:red;"></i>
     </a>
@@ -24,7 +25,8 @@
         <i class="far fa-heart fa-lg"></i>
     </a>
     {% endif %}
-    <p>{{ article.like_users.count }}</p>
+    <p>{{ article_like_users|length }}</p>
+    {% endwith %}
     <hr>
     <p>{{ article.content }}</p>
     <img src="{{ article.image.url }}">
