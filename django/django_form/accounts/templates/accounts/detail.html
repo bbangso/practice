@@ -10,5 +10,14 @@
 </form>
 {% endif %}
 <hr>
-{% endblock %}
+{% with user_followers=user.followers.all %}
+{% if request.user in user_followers %}
+<a href="{% url 'accounts:follow' user.pk %}">팔로우 취소</a>
+{% else %}
+<a href="{% url 'accounts:follow' user.pk %}">팔로우</a>
+{% endif%}
+<p>{{ user_followers|length }} 명이 팔로우 중입니다.</p>
+{% endwith %}
 
+<p>{{ user.followings.count }} 명을 내가 팔로우하고 있습니다.</p>
+{% endblock %}

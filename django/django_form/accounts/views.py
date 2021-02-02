@@ -78,4 +78,14 @@ def delete(request):
     return redirect('articles:index')
 
 
-
+def follow(request, pk):
+    User = get_user_model()
+    user = get_object_or_404(User, pk=pk)
+    
+    if user != request.user:
+        if user.followers.filter(pk=request.user.pk).exists():
+            user.followers.remove(request.user)
+        else:
+            user.followers.add(request.user)
+    
+    return redirect('accounts:detail', user.pk)
