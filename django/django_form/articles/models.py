@@ -30,6 +30,10 @@ class Article(models.Model):
 
     # settings.AUTH_USER_MODEL
 
+    # articles_article_like_users table 생성 
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL,
+                                        related_name='like_articles')
+
 
 class Comment(models.Model):
     content = models.TextField()
