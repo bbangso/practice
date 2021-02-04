@@ -1,7 +1,12 @@
 from django.shortcuts import render
 from django.views.decorators.http import require_GET
 from django.http.response import JsonResponse
+
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
 from .models import Article
+from .serializers import ArticleSerializer
 
 # Create your views here.
 
@@ -22,3 +27,9 @@ def article_list_2(request):
     articles = Article.objects.all()
     data = serializers.serialize('json', articles)
     return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def article_list_3(request):
+    articles = Article.objects.all()
+    serializer = ArticleSerializer(articles, many=True)
+    return Response(serializer.data)
