@@ -1,4 +1,7 @@
 from django.db import models
+from faker import Faker
+
+f = Faker()
 
 # Create your models here.
 class Article(models.Model):
@@ -6,4 +9,11 @@ class Article(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    
+    @classmethod
+    def dummy(cls, n):
+        for _ in range(n):
+            cls.objects.create(
+                title=f.name(),
+                content=f.text(),
+            )
