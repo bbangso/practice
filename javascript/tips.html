@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 재할당이 가능하다
+        let a = 1;
+
+        // 재할당이 불가능 하다  !== 값이 바뀌지 않는다
+        const b = 1;
+        b = 'a' // Error
+
+        const a = [1,2,3]      // a = [1,2,3]
+        a.push(4) // Possible     a = [1,2,3,4]
+
+        // Naming convention
+        // const add_one_to_number (bad)
+        // const addOneToNumber (good)
+        
+        // 절대 느슨한 일치 연산자를 사용하지 않는다.
+        // ==, != (x)   ,   ===, !== (o)
+
+        // Function => 1급 객체
+        // 1. 변수에 저장할 수 있다.
+        // 2. 함수의 리턴값이 될 수 있다.
+        // 3. 함수의 인자가 될 수 있다.
+
+
+    </script>
+</body>
+</html>
