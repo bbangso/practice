@@ -11,6 +11,7 @@
     <title>Hello, world!</title>
   </head>
   <body>
+    <button class="btn btn-primary" onclick="createCard()">Create Card</button>
     <div class="container">
       <div id="cardArea" class="row">
 
@@ -23,37 +24,39 @@
     -->
 
     <script>
+      function createCard(){
+        const card = document.createElement('div')
+        card.classList.add('card', 'col-4')
+        
+        const cardImage = document.createElement('img')
+        cardImage.src = 'https://picsum.photos/200'
+        cardImage.classList.add('card-img-top')
+        cardImage.alt = 'random-image'
 
-      const card = document.createElement('div')
-      card.classList.add('card', 'col-4')
+        const cardBody = document.createElement('div')
+        cardBody.classList.add('card-body')
+
+        const cardTitle = document.createElement('h5')
+        cardTitle.classList.add('card-title')
+        cardTitle.innerText = 'Test title'
+
+        const cardText = document.createElement('p')
+        cardText.classList.add('card-text')
+        cardText.innerHTML = "<a>HI</a>"
+
+        const cardButton = document.createElement('a')
+        cardButton.classList.add('btn', 'btn-primary')
+        cardButton.href = '#'
+        cardButton.innerText = 'Go somewhere'
+
+        
+        cardBody.append(cardTitle, cardText, cardButton)
+        card.append(cardImage, cardBody)
+        
+        const cardArea = document.querySelector('#cardArea')
+        cardArea.appendChild(card)
+      }
       
-      const cardImage = document.createElement('img')
-      cardImage.src = 'https://picsum.photos/200'
-      cardImage.classList.add('card-img-top')
-      cardImage.alt = 'random-image'
-
-      const cardBody = document.createElement('div')
-      cardBody.classList.add('card-body')
-
-      const cardTitle = document.createElement('h5')
-      cardTitle.classList.add('card-title')
-      cardTitle.innerText = 'Test title'
-
-      const cardText = document.createElement('p')
-      cardText.classList.add('card-text')
-      cardText.innerHTML = "<a>HI</a>"
-
-      const cardButton = document.createElement('a')
-      cardButton.classList.add('btn', 'btn-primary')
-      cardButton.href = '#'
-      cardButton.innerText = 'Go somewhere'
-
-      
-      cardBody.append(cardTitle, cardText, cardButton)
-      card.append(cardImage, cardBody)
-      
-      const cardArea = document.querySelector('#cardArea')
-      cardArea.appendChild(card)
     </script>
   </body>
 </html>
