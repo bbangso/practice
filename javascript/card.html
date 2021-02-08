@@ -11,8 +11,14 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <button class="btn btn-primary" onclick="createCard()">Create Card</button>
-    <div class="container">
+    <div class="form-group">
+      <label for="cardTitleInput">Card Title</label>
+      <input id="cardTitleInput" type="text" class="form-control">
+      <label for="cardTextInput">Card Text</label>
+      <input id="cardTextInput" type="text" class="form-control">
+    </div>
+    <button id="createCardButton" class="btn btn-primary">Create Card</button>
+    <div class="container mt-3">
       <div id="cardArea" class="row">
 
       </div>
@@ -24,7 +30,8 @@
     -->
 
     <script>
-      function createCard(){
+      function createCard(title, content){
+        console.log(title, content)
         const card = document.createElement('div')
         card.classList.add('card', 'col-4')
         
@@ -38,11 +45,11 @@
 
         const cardTitle = document.createElement('h5')
         cardTitle.classList.add('card-title')
-        cardTitle.innerText = 'Test title'
+        cardTitle.innerText = title
 
         const cardText = document.createElement('p')
         cardText.classList.add('card-text')
-        cardText.innerHTML = "<a>HI</a>"
+        cardText.innerHTML = content
 
         const cardButton = document.createElement('a')
         cardButton.classList.add('btn', 'btn-primary')
@@ -56,7 +63,18 @@
         const cardArea = document.querySelector('#cardArea')
         cardArea.appendChild(card)
       }
-      
+
+
+
+      const createCardButton = document.querySelector('#createCardButton')
+      createCardButton.addEventListener('click', function(){
+        const cardTitleInput = document.querySelector('#cardTitleInput');
+        const cardTextinput = document.querySelector('#cardTextinput');
+        createCard(cardTitleInput.value, cardTextInput.value);
+
+        cardTitleInput.value = null;
+        cardTextInput.value = null;
+      });
     </script>
   </body>
 </html>
