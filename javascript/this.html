@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <script>
+    // this => 무조건 어떤 object를 지칭
+    // method => 객체안에 정의된 함수 (.methodName() 으로 실행하는 함수)
+    
+    // this가 window가 아닌 경우
+    // 1. method 안의 this  ==> 해당 method 가 정의된 객체(object)
+    // 2. 생성자 함수 안의 this
+
+    const obj = {
+      name: 'obj',
+      method1: function () {
+        console.log(this) // ==> obj
+      },
+      objInObj: {
+        name: 'oio',
+        // oioMethod: function () {...} 아래와 같음
+        oioMethod(){
+          console.log(this) // ==> objInObj
+        }
+      },
+      arr: [0,1,2],
+      newArr: [],
+
+      method2 () {
+        this.arr.forEach(
+          // function(number) {
+          //   // console.log(this)  여기서 this는 window!!! (bind가 없을 경우)
+          //   this.newArr.push(number * 100)
+          // }.bind(this)  //너무 복잡하다. 화살표함수의 필요이유!!
+
+          (number) => {
+            this.newArr.push(number * 100)
+          }
+        )
+      }
+    
+    }
+  </script>
+</body>
+</html>
