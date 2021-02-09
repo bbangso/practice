@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      // promise => 성공/실패
+      // 성공했을 때, .then()
+      // 실패했을 때, .catch()
+      axios.get('https://koreanjson.com/posts/1')
+        .then(function (res) {
+          return res.data
+        })
+        .then(function(data) {
+          return data.content
+        })
+        .then(function (content) {
+          console.log(content)
+        })
+        .catch()
+    </script>
+</body>
+</html>

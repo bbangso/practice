@@ -11,12 +11,13 @@
 
   <script>
     const myButton = document.querySelector('#myButton')
-    function confirmMessage(event)  {
-      confirm('yap')
-    }
-    myButton.addEventListener('click', confirmMessage)
+    // function confirmMessage(event)  {
+    //   confirm('yap')
+    // }
+    // myButton.addEventListener('click', confirmMessage)
 
     myButton.addEventListener('click', function(event){
+      event.target.classList.add('btn', 'btn-primary')
       confirm('yap1')
     })
   </script>
