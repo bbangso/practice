@@ -1,6 +1,9 @@
+import art
+
 from django.shortcuts import render
 from django.views.decorators.http import require_GET
 from django.http.response import JsonResponse
+
 
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -33,3 +36,16 @@ def article_list_3(request):
     articles = Article.objects.all()
     serializer = ArticleSerializer(articles, many=True)
     return Response(serializer.data)
+
+
+def ping(request):
+    return render(request, 'board/ping.html')
+
+def pong(request):
+    user_input = request.GET.get('inputText')
+    art_text = art.text2art(user_input)
+    data = {
+        'success': True,
+        'content': art_text,
+    }
+    return JsonResponse(data)

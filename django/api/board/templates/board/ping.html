@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  
+  <label for="userInput">Input: </label>
+  <input type="text" id="userInput">
+  <pre id="resultArea">
+
+  </pre>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const userInput = document.querySelector('#userInput')
+    userInput.addEventListener('input', function(event) {
+      const inputText = userInput.value
+      axios.get('/board/pong/',{
+        params: {
+          inputText: inputText,
+        }
+      })
+        .then(function(res) {
+          const resultArea = document.querySelector('#resultArea')
+          resultArea.innerText = res.data.content
+        })
+    })
+
+  </script>
+</body>
+</html>
