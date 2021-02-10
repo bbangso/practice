@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+	<div id="app">
+		<button @click="getLuckySix">GET LUCKY 6</button>
+		<ul>
+			<li v-for="number in myNumbers">
+				{{ number }}
+			</li>
+		</ul>
+	</div>
+	<!-- lodash 라이브러리 : js로 구현된 여러 편리한 라이브러리 (수학)-->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+	<script>
+		const app = new Vue({
+			el: '#app',
+			data: {
+				allNumbers: _.range(1,46),
+				myNumbers: []
+			},
+			methods: {
+				getLuckySix(){
+					this.myNumbers = _.sampleSize(this.allNumbers, 6)
+					this.myNumbers.sort((a,b) => a-b)
+				}
+			}
+		})
+	</script>
+</body>
+</html>
