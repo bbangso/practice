@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!--  "v-" 접두사로 시작하는 것들을 "디렉티브" 라 한다.-->
+    <!-- Vanilla JS. domElement.innerText 와 같다-->
+    <p v-text="message"></p>
+    <p>{{ message }}</p>
+
+
+    <!-- v-if true false -->
+    <p v-if="bool1">
+      true
+    </p>
+    <p v-if="bool2">
+      false
+    </p>
+    <p v-if="str1">
+      Yes
+    </p>
+    <p v-if="str2">
+      No
+    </p>
+    <p v-if="num1">
+      1
+    </p>
+    <p v-if="num2">
+      0
+    </p>
+
+    <p v-if="username === 'master'">
+      Hello master
+    </p>
+    <p v-else>
+      Hello User
+    </p>
+
+
+    <p v-if="number > 0">
+      양수 
+    </p>
+    <p v-else-if="number < 0">
+      음수
+    </p>
+    <p v-else>
+      0
+    </p>
+
+    <!-- v-for -->
+    <ul>
+      <li v-for="number in numbers">{{ number }}</li>
+    </ul>
+    <ol>
+      <li v-for="teacher in teachers">{{ teacher.name }}</li>
+    </ol>
+
+    <!-- v-bind, 표준 HTML 속성과 Vue 인스턴스를 연동할 때 -->
+    <a v-bind:href="googleUrl">Google link</a>
+    <a v-bind:href="naverUrl">Naver link</a>
+    <img v-bind:src="randomImageUrl" alt="random-image">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',  // mount
+      data: {     // MVVM => Model 담당 
+        message: "Hello Vue!",
+        bool1: true,
+        bool2: false,
+        str1: 'Yes',
+        str2: '',
+        num1: 1,
+        num2: 0,
+        username: 'master',
+        number: 0,
+        numbers: [0,1,2,3,4,5],
+        teachers: [
+          {name:'neo'},
+          {name:'tak'},
+        ],
+        googleUrl: 'https://google.com',
+        naverUrl: 'https://naver.com',
+        randomImageUrl: 'https://picsum.photos/200',
+      }
+    })
+    
+  </script>
+</body>
+</html>
