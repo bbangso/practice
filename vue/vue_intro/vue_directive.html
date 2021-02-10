@@ -60,10 +60,28 @@
       <li v-for="teacher in teachers">{{ teacher.name }}</li>
     </ol>
 
-    <!-- v-bind, 표준 HTML 속성과 Vue 인스턴스를 연동할 때 -->
+    <!-- v-bind, 표준 HTML 속성과 Vue 인스턴스를 연동할 때, 축약 :  -->
     <a v-bind:href="googleUrl">Google link</a>
     <a v-bind:href="naverUrl">Naver link</a>
-    <img v-bind:src="randomImageUrl" alt="random-image">
+    <img :src="randomImageUrl" alt="random-image">
+
+    <!-- methods, v-on,,   v-on 축약 @-->
+    <p>{{message}}</p> <!-- console: app.changeMessage()-->
+    <button v-on:click="alertWarning">Alert Warning</button>
+    <button v-on:click="alertMessage">Alert Message</button>
+    <button @:click="changeMessage">Change Message</button>
+    <hr>
+    <input @:keyup.enter="onInputChange" type="text">
+
+    <!-- v-model :    input, select, textarea 에 양방향 binding -->
+    <h1>{{ message }}</h1>
+    <input @keyup.enter="onInputChange" type="text">  <!-- 단방향 input값이 data에 영향을 준다, data값은 input에 영향 x -->
+    <hr>
+    <input @keyup.enter="onInputChange" type="text" :value="message"> <!-- 양방향 -->
+    <hr>
+    <input type="text" v-model="message">   <!-- 양방향 위에랑 똑같음 -->
+    <hr>
+
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <script>
@@ -87,6 +105,25 @@
         googleUrl: 'https://google.com',
         naverUrl: 'https://naver.com',
         randomImageUrl: 'https://picsum.photos/200',
+        
+      },
+      methods: {
+        alertWarning: function () {
+          alert('warning!')
+        },
+
+        // 간편한 표기 Syntactic Sugar
+        alertMessage () {
+          alert(this.message)
+        },
+
+        changeMessage() {
+          this.message = "Changed Message"
+        },
+        onInputChange (event) {
+          this.message = event.target.value
+        },
+
       }
     })
     
