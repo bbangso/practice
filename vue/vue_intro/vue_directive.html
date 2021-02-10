@@ -82,6 +82,23 @@
     <input type="text" v-model="message">   <!-- 양방향 위에랑 똑같음 -->
     <hr>
 
+    <!-- v-show -->
+    <button @click="changF">changeF</button>
+    <p v-if="t">
+      This is v_if true
+    </p> 
+    <p v-if="f">
+      This is v_if false
+    </p>
+    <p v-show="t">
+      This is v_show true
+    </p>
+    <p v-show="f">
+      This is v_show  false 
+    </p>        <!-- v-show 와 v-if의 차이 :  -->
+    <!-- v-show는 (t/f)가 자주 바뀔때 유리하다 (redering cost가 작다 )-->
+    <!-- v-if는 (t/f)가 자주 바뀌지 않을때 유리하다 (loading cost가 작다)-->
+
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <script>
@@ -105,7 +122,8 @@
         googleUrl: 'https://google.com',
         naverUrl: 'https://naver.com',
         randomImageUrl: 'https://picsum.photos/200',
-        
+        t: true,
+        f: false,
       },
       methods: {
         alertWarning: function () {
@@ -123,7 +141,9 @@
         onInputChange (event) {
           this.message = event.target.value
         },
-
+        changeF () {
+          this.f = !this.f
+        }
       }
     })
     
