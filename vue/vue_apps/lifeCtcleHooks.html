@@ -24,6 +24,9 @@
 
     <button @click="getPhotos" class="button-bottom">GET PHOTOS</button>
   </div>
+
+  <div id="bottomSensor"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollmonitor/1.2.4/scrollMonitor.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
@@ -53,10 +56,17 @@
 
       created: function () {
         // 초기화 해야하는 것들은 이 시점에서 하는건이 권장된다.
-        this.getPhotos()
+        const bottomSensor = document.querySelector('#bottomSensor')
+        const watcher = scrollMonitor.create(bottomSensor)
+        // watcher가 화면에 들어오면, callback 하겠다.
+        watcher.enterViewport(() => {
+          this.getPhotos()
+        })
       },
     });
     // https://jsonplaceholder.typicode.com/photos
+
+
   </script>
 </body>
 </html>
