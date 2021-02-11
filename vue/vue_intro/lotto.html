@@ -29,7 +29,8 @@
 			methods: {
 				getLuckySix(){
 					this.myNumbers = _.sampleSize(this.allNumbers, 6)
-					this.myNumbers.sort((a,b) => a-b)
+					this.myNumbers.sort((a,b) => a-b)  // '1' - '11' 가 정수계산으로 된다는 것에서 착안
+					
 				}
 			}
 		})

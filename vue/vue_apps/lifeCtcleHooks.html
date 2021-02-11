@@ -50,6 +50,11 @@
             .catch(err => console.log(err))
         }
       },
+
+      created: function () {
+        // 초기화 해야하는 것들은 이 시점에서 하는건이 권장된다.
+        this.getPhotos()
+      },
     });
     // https://jsonplaceholder.typicode.com/photos
   </script>
