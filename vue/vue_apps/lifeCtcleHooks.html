@@ -76,6 +76,16 @@
       mounted: function () {
         // mounted: DOM 과 Vue 인스턴스가 연동이 완료되고 난 이후에 실행할 일들.
          this.addScrollWatcher() 
+      },
+
+      updated: function () {
+        // data({}) 가 바뀌고 나서 화면이 다시 렌더된 이후.
+        const bottomSensor = document.querySelector('#bottomSensor')
+        const watcher = scrollMonitor.create(bottomSensor)
+
+        if(watcher.ifFullyInViewport){
+          this.getPhotos()
+        }
       }
     });
     // https://jsonplaceholder.typicode.com/photos
