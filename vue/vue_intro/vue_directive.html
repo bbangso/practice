@@ -83,7 +83,7 @@
     <hr>
 
     <!-- v-show -->
-    <button @click="changF">changeF</button>
+    <button @click="changeF">changeF</button>
     <p v-if="t">
       This is v_if true
     </p> 
@@ -99,6 +99,9 @@
     <!-- v-show는 (t/f)가 자주 바뀔때 유리하다 (redering cost가 작다 )-->
     <!-- v-if는 (t/f)가 자주 바뀌지 않을때 유리하다 (loading cost가 작다)-->
 
+    
+    <!-- computed -->
+    {{ bankrruptPeople }}
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <script>
@@ -124,6 +127,12 @@
         randomImageUrl: 'https://picsum.photos/200',
         t: true,
         f: false,
+        accounts: [
+          {name: 'neo', balance: 500, isBackrruped: true},
+          {name: 'tak', balance: 700, isBackrruped: false},
+          {name: 'john', balance: 350, isBackrruped: false},
+          {name: 'justin', balance: 200, isBackrruped: true},
+        ],
       },
       methods: {
         alertWarning: function () {
@@ -143,6 +152,16 @@
         },
         changeF () {
           this.f = !this.f
+        },
+      },
+      
+
+      // Data를 CUD 하지 않고, '조회만' 하고 싶을때, 특히 가공해서 조회하고 싶을때
+      computed: {
+        bankrruptPeople: function() {
+          return this.accounts.filter((account) => {
+            return account.isBackrruped
+          })
         }
       }
     })
