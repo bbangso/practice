@@ -14,7 +14,7 @@ export default {
   },
   methods: {
     signalToParent() {
-      this.$emit('signal') // custom event
+      this.$emit('signal', 'signal1', 'signal2') // custom event
     }
   }
 }

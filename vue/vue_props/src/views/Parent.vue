@@ -1,7 +1,7 @@
 <template>
   <div class="parent">
     <h1>부모 컴포넌트</h1>
-    <Child @signal="parentMsg='i got'" :propFromParent="parentMsg"/>
+    <Child @signal="onSignal" :propFromParent="parentMsg"/>
   </div>
 </template>
 
@@ -17,6 +17,11 @@ export default {
   },
   components: {
     Child, // Child: Child 
+  },
+  methods: {
+    onSignal(sig1, sig2) {
+      console.log(sig1, sig2)
+    }
   }
 }
 </script>
