@@ -10,7 +10,14 @@ import axios from 'axios'
 import SearchBar from './components/SearchBar.vue'
 import VideoList from './components/VideoList.vue'
 
-const API_KEY = 'AIzaSyD2joQJZdvli0zqz7R7-3401ZgyIISFkWk'
+
+/*
+  .env.local 파일에 작성한 변수명이
+  서버 최초 실행시에 process.env.변수명 으로 자동 설정된다.
+  단, 변수명의 접두사가 VUE_APP_ 이어야 한다.
+*/
+
+const API_KEY = process.env.VUE_APP_YOUTUBE_API_KEY
 const API_URL = 'https://www.googleapis.com/youtube/v3/search'
 
 export default {
