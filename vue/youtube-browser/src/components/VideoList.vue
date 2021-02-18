@@ -2,7 +2,7 @@
     <ul class="list-group col-lg-4">
       <VideoListItem 
         @video-select="onVideoSelect"
-        v-for="video in videos" 
+        v-for="video in $store.state.videos" 
         :key="video.etag" 
         :video="video"/>
     </ul>
