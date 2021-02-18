@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <SearchBar @input-change="onInputChange"/>
-    <VideoList :videos="videos"/>
+    <div class="row">
+      <VideoDetail :selectedVideo="selectedVideo"/>
+      <VideoList @video-select="onVideoSelect" :videos="videos"/>
+    </div>
   </div>
 </template>
 
@@ -9,6 +12,7 @@
 import axios from 'axios'
 import SearchBar from './components/SearchBar.vue'
 import VideoList from './components/VideoList.vue'
+import VideoDetail from './components/VideoDetail.vue'
 
 
 /*
@@ -25,11 +29,13 @@ export default {
   components: {
     SearchBar,
     VideoList,
+    VideoDetail,
   },
   data () {
     return{
       inputValue: '',
       videos: [],
+      selectedVideo: null,
     }
   },
   methods: {
@@ -45,6 +51,10 @@ export default {
       })
         .then(res => this.videos = res.data.items)
         .catch(err => console.error(err))
+    },
+
+    onVideoSelect (video) {
+      this.selectedVideo = video
     }
   }
 }

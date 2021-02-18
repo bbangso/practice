@@ -1,16 +1,28 @@
 <template>
-  <div>
-    <ul>
-      <li v-for="video in videos" :key="video.etag">{{ video.snippet.description }}</li>
+    <ul class="list-group col-lg-4">
+      <VideoListItem 
+        @video-select="onVideoSelect"
+        v-for="video in videos" 
+        :key="video.etag" 
+        :video="video"/>
     </ul>
-  </div>
 </template>
 
 <script>
+import VideoListItem from './VideoListItem.vue'
+
 export default {
   name: "VideoList",
+  components: {
+    VideoListItem,
+  },
   props: {
     videos: Array,
+  },
+  methods: {
+    onVideoSelect(video) {
+      this.$emit('video-select', video)
+    }
   }
 }
 </script>
