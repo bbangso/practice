@@ -1,11 +1,12 @@
 <template>
-  <div v-if="selectedVideo" class="col-lg-8">
+  <div v-if="selectedVideo" class="col-lg-8 ps-0 mb-3">
     <div class="video-detail">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" 
+        <div style="position: relative; height: 0px; padding-bottom:56.25%">
+        <iframe
+          style="position:absolute; width:100%; height:100%"
           :src="videoUrl" 
           allowfullscreen></iframe>
-      </div> 
+        </div>
     </div>
     <div class="details">
       <h4>
