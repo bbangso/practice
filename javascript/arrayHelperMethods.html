@@ -34,11 +34,23 @@
     });
     console.log(sum);
 
-    // 3. filter
+    // 3. filter  전체순회
     const odds = [1,2,3].filter(function(number){
       return number % 2
     });
     console.log(odds);
+
+
+    // 4. find  조건에 맞는 요소를 찾으면 break하고 요소를 리턴 
+    const findnum = [1,2,3,4,5].find(num => num===3)
+    console.log(findnum)
+
+    // 5. some  요소들중 하나라도 조건을 만족하면 true 아니면 false
+    const biggerThan20 = [10,20,30].some(num=> num>20)
+    console.log(biggerThan20)
+
+    // 6. every   " 모두가 조건을 만족하면 true, 아니면 false
+    const allbigger = [10,20,30].every(num => num>11)
   </script>
 </body>
 </html>
