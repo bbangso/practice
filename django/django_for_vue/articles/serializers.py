@@ -9,7 +9,7 @@ class ArticleListSerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
+    user = UserSerializer(required=False) # is_valid() 에서 유무검증 pass
     class Meta:
         model = Article
         fields = '__all__'
