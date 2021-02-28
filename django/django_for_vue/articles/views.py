@@ -25,5 +25,6 @@ def article_detail(request, article_pk):
 def create_article(request):
     serializer = ArticleSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        serializer.save()
+        print(request.user)
+        serializer.save(user=request.user)
         return Response(serializer.data)
