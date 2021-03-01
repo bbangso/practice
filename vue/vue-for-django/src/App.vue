@@ -12,12 +12,13 @@
       -->
 
     </div>
-    <router-view @submit-login-data="login" @submit-signup-data="signup"/>
+    <router-view />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 // axios.post(URL, BODY, HEADER)
 
 
@@ -25,28 +26,14 @@ const SERVER_URL = 'http://localhost:8000'
 
 export default {
   name: 'App',
-  data() {
-    return{
-      isLoggedIn: false,
-    }
+  computed: {
+    ...mapGetters(['isLoggedIn'])
   },
   methods: {
-    setCookie(token){
-      this.$cookies.set('auth-token', token)
-      this.isLoggedIn = true
-    },
-    login (loginData) {
-      axios.post(SERVER_URL + '/rest-auth/login/', loginData)
-        .then(res =>  {
-          this.setCookie(res.data.key)
-          this.$router.push({ name: 'Home'})
-        })
-        .catch(err => console.log(err.response))
-    },
     logout() {
       const requestHeaders = {
         headers: {
-          'Authorization': `Token ${this.$cookies.get('auth-token')}`
+          'Authorization': `Token ${this.$cookies.get('auth-token').key}`
         }
       }
       axios.post(SERVER_URL + '/rest-auth/logout/', null, requestHeaders)
@@ -57,17 +44,8 @@ export default {
         })
         .catch(err => console.log(err.response.data))
     },
-    signup(signupData) {
-      axios.post(SERVER_URL + '/rest-auth/registration/', signupData)
-        .then(res =>  {
-          this.setCookie(res.data.key)
-          this.$router.push({ name: 'Home'})
-        })
-        .catch(err => console.log(err.response.data))
-    },
   },
   mounted() {
-    this.isLoggedIn = this.$cookies.isKey('auth-token') 
   },
 }
 </script>

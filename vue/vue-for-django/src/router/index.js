@@ -32,7 +32,7 @@ const routes = [
     component: CreateView,
     beforeEnter(from, to, next){
       if(Vue.$cookies.isKey('auth-token')){
-        next('/LoginView')
+        next({name: 'LoginView'})
       }
       else{
         next()

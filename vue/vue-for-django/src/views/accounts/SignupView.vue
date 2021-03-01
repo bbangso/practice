@@ -14,12 +14,14 @@
       <input v-model="signupData.password2" type="password" id="password2">
     </div>
     <div>
-      <button @click="signup">Signup</button>
+      <button @click="signup(signupData)">Signup</button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'SignupView',
   data() {
@@ -32,9 +34,7 @@ export default {
     }
   },
   methods: {
-    signup() {
-      this.$emit('submit-signup-data', this.signupData)
-    }
+		...mapActions(['signup'])
   }
 }
 </script>

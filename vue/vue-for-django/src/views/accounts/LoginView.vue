@@ -10,12 +10,14 @@
       <input v-model="loginData.password" type="password" id="password">
     </div>
     <div>
-      <button @click="login">Login</button>
+      <button @click="login(loginData)">Login</button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'LoginView',
   data() {
@@ -27,9 +29,7 @@ export default {
     }
   },
   methods: {
-    login() {
-      this.$emit('submit-login-data', this.loginData)
-    }
+    ...mapActions(['login'])
   }
 }
 </script>
