@@ -6,7 +6,7 @@
       <router-link v-if="!isLoggedIn" :to="{ name: 'LoginView' }">Login</router-link> | 
       <router-link v-if="!isLoggedIn" :to="{ name: 'Signup' }">Signup</router-link> | 
       <router-link v-if="isLoggedIn" :to="{ name: 'CreateView' }">New Article</router-link> | 
-      <router-link v-if="isLoggedIn" @click.native="logout" to="/logout">Logout</router-link>
+      <router-link v-if="isLoggedIn" :to="{ name: 'LogoutView' }">Logout</router-link>
       <!-- component는 일반적으로 아래에서 올라오는 이벤트만을 기다린다 native를 붙이면
         기존에 존재하는 이벤트임을 명시하는 것이다 
       -->
@@ -17,12 +17,8 @@
 </template>
 
 <script>
-import axios from 'axios'
 import { mapGetters } from 'vuex'
 // axios.post(URL, BODY, HEADER)
-
-
-const SERVER_URL = 'http://localhost:8000'
 
 export default {
   name: 'App',
@@ -30,20 +26,7 @@ export default {
     ...mapGetters(['isLoggedIn'])
   },
   methods: {
-    logout() {
-      const requestHeaders = {
-        headers: {
-          'Authorization': `Token ${this.$cookies.get('auth-token').key}`
-        }
-      }
-      axios.post(SERVER_URL + '/rest-auth/logout/', null, requestHeaders)
-        .then(() => {
-          this.$cookies.remove('auth-token')
-          this.isLoggedIn = false
-          this.$router.push({name: 'Home'})
-        })
-        .catch(err => console.log(err.response.data))
-    },
+
   },
   mounted() {
   },

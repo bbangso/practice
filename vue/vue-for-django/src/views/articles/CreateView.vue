@@ -11,15 +11,13 @@
     </div>
 
     <div>
-      <button @click="createArticle">Submit</button>
+      <button @click="createArticle(articleData)">Submit</button>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-
-const SERVER_URL = 'http://localhost:8000'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'CreateView',
@@ -32,26 +30,14 @@ export default {
     }
   },
   methods:{
-    createArticle() {
-      const config = {
-        headers: {
-          Authorization: `Token ${this.$cookies.get('auth-token')}`
-        }
-      }
-      axios.post(SERVER_URL + '/articles/create/', this.articleData, config)
-        .then((res) => {
-          console.log(res.data)
-          this.$router.push({name:'ListView'})
-        })
-        .catch(err => console.log(err.response.data))
-    }
+    ...mapActions(['createArticle'])
   },
 
-  created() {
-    if (!this.$cookies.isKey('auth-token')) {
-      this.$router.push({ name: 'LoginView' })
-    }
-  }
+  // created() {
+  //   if (!this.$cookies.isKey('auth-token')) {
+  //     this.$router.push({ name: 'LoginView' })
+  //   }
+  // }
 }
 </script>
 

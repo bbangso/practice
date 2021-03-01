@@ -10,25 +10,17 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { mapState, mapActions } from 'vuex'
 
-const SERVER_URL = 'http://localhost:8000'
+
 
 export default {
   name: 'ListView',
-  data() {
-    return {
-      articles: []
-    }
+  computed: {
+    ...mapState(['articles'])
   },
   methods: {
-    fetchArticles() {
-      axios.get(SERVER_URL + '/articles/')
-        .then(res => {
-          this.articles = res.data
-        })
-        .catch(err => console.log(err))
-    }
+    ...mapActions(['fetchArticles'])
   },
   created() {
     this.fetchArticles()

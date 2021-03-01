@@ -5,6 +5,6 @@ export default{
         login: '/rest-auth/login/',
         logout: '/rest-auth/logout/',
         createArticle: '/articles/create/',
-        articleList: '/aritlces/',
+        articleList: '/articles/',
     }
 }
